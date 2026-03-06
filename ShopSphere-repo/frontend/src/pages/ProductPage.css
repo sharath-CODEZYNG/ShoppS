@@ -1,0 +1,24 @@
+.product-page-root{ background:var(--bg) }
+.product-page{ display:flex; flex-direction:column; gap:18px; padding-top:28px }
+.product-main{ display:flex; gap:28px; align-items:flex-start }
+.product-left{ flex:0 0 52% }
+.product-right{ flex:1; display:flex; flex-direction:column }
+.product-image img{ width:100%; height:auto; border-radius:12px; object-fit:cover }
+.product-thumbs{ display:flex; gap:12px; margin-top:12px }
+.thumb img{ width:120px; height:88px; object-fit:cover; border-radius:8px }
+.product-title{ margin:0; font-size:1.6rem }
+.product-price-large{ font-size:1.6rem; font-weight:800; margin-top:8px }
+.product-actions{ display:flex; gap:12px; align-items:center }
+.qty-select{ padding:8px 10px; border-radius:8px }
+.btn-add{ background:var(--accent); color:white; padding:10px 14px; border-radius:10px; border:0; font-weight:700 }
+.btn-primary{ background:white; color:var(--text); padding:10px 14px; border-radius:10px; border:1px solid var(--border) }
+.product-total{ margin-top:6px }
+.product-details{ padding:18px }
+.attributes{ display:flex; flex-wrap:wrap; gap:12px; margin-top:8px }
+.attr{ background:rgba(0,0,0,0.02); padding:8px 10px; border-radius:8px }
+.attr-key{ font-weight:700; margin-right:6px }
+
+@media (max-width:980px){
+  .product-main{ flex-direction:column }
+  .product-left{ width:100% }
+}

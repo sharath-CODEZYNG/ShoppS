@@ -1,0 +1,158 @@
+.admin-root{display:flex;min-height:100vh}
+.admin-sidebar{width:220px;background:#0f1724;color:#fff;padding:20px;display:flex;flex-direction:column}
+.admin-brand{font-weight:700;margin-bottom:18px}
+.admin-sidebar nav a{display:block;color:#cbd5e1;margin:8px 0;text-decoration:none}
+
+/* Sidebar-specific small button overrides (keep `.small-btn` elsewhere unchanged) */
+.admin-sidebar .small-btn{display:inline-flex;align-items:center;gap:10px;width:100%;justify-content:flex-start;padding:10px 12px;border-radius:8px;background:transparent;border:1px solid rgba(255,255,255,0.04);color:#f8fafc;font-weight:600;cursor:pointer}
+.admin-sidebar .small-btn:hover{background:rgba(255,255,255,0.03);transform:translateY(-1px)}
+.admin-sidebar .small-btn:active{transform:translateY(0)}
+.admin-sidebar .small-btn:focus-visible{outline:3px solid rgba(3,102,214,0.16);outline-offset:3px}
+
+/* Logout specific tweaks (icon sizing/contrast) */
+.admin-sidebar .logout-btn svg{color:rgba(255,255,255,0.95)}
+.admin-sidebar .logout-btn span{color:#f8fafc}
+.admin-main{flex:1;padding:24px;background:#f8fafc}
+.admin-cards{display:flex;gap:12px}
+.admin-cards .admin-card{flex:1}
+.admin-card{background:#fff;padding:12px;border-radius:6px;box-shadow:0 1px 3px rgba(2,6,23,0.06);min-width:160px}
+.card{background:#fff;padding:16px;border-radius:8px;border:1px solid rgba(2,6,23,0.04);box-shadow:0 1px 2px rgba(2,6,23,0.04)}
+.chart-card{padding:8px 0}
+
+/* Page container */
+.admin-content{max-width:1100px;margin:0 auto;padding:24px}
+.page-header{display:flex;flex-direction:column;gap:6px;margin-bottom:12px}
+.page-sub{color:#6b7280;font-size:13px}
+
+/* Form layout */
+.product-form{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.product-form .full{grid-column:1 / -1}
+.product-form .field{display:flex;flex-direction:column}
+.product-form input, .product-form select, .product-form textarea{padding:10px;border:1px solid #e5e7eb;border-radius:6px;font-size:14px}
+.product-form textarea{min-height:120px;resize:vertical}
+
+/* Buttons */
+.small-btn{padding:8px 10px;border-radius:6px;border:1px solid #d1d5db;background:#fff;font-size:13px}
+.btn-primary{background:#0366d6;color:#fff;border:none;padding:10px 14px;border-radius:8px;font-weight:600}
+.btn-secondary{background:#fff;color:#111;border:1px solid #e5e7eb;padding:8px 12px;border-radius:8px}
+.btn-danger{background:#ef4444;color:#fff;border:none;padding:8px 12px;border-radius:8px}
+.btn-edit{background:#fff;color:#111;border:1px solid #e5e7eb;padding:6px 10px;border-radius:6px}
+.btn-delete{background:#fee2e2;color:#b91c1c;border:1px solid rgba(185,28,28,0.12);padding:6px 10px;border-radius:6px}
+
+/* Tags / chips */
+.chip{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border-radius:16px;border:1px solid #e5e7eb;margin-right:8px;margin-bottom:8px}
+.chip button{background:transparent;border:none;color:#6b7280;padding:0}
+
+/* File upload & previews */
+.upload-btn{display:inline-flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;border:1px dashed #d1d5db;background:#fff;color:#374151;cursor:pointer}
+.upload-input{display:none}
+.preview-list{display:flex;gap:8px;margin-top:8px}
+.preview-item{width:72px;height:72px;border-radius:6px;overflow:hidden;border:1px solid #e5e7eb;display:flex;align-items:center;justify-content:center;background:#fafafa;position:relative}
+.preview-item img{width:100%;height:100%;object-fit:cover}
+.img-del{position:absolute;top:6px;right:6px;width:28px;height:28px;border-radius:50%;background:rgba(0,0,0,0.92);color:#fff;border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:70;box-shadow:0 6px 14px rgba(2,6,23,0.32);transition:background .15s, transform .12s}
+.img-del:hover{background:#b91c1c;transform:scale(1.03)}
+.img-del:focus-visible{outline:3px solid rgba(3,102,214,0.32);outline-offset:2px}
+.preview-item img{position:relative;z-index:0}
+.img-del svg{display:block;width:18px;height:18px}
+.img-del .x-mark{color:#fff;font-weight:700;font-size:18px;line-height:1;position:relative;z-index:72;transform:translateY(-1px)}
+.img-del .x-svg{position:relative;z-index:72;display:block;width:18px;height:18px}
+
+/* Tag add button & styles */
+.tag-add{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:6px;border:1px solid #d1d5db;background:#fff;color:#374151;cursor:pointer}
+.tag-add svg{width:14px;height:14px}
+
+/* Attribute add button */
+.attr-add{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:6px;border:1px solid #d1d5db;background:#fff;color:#374151;cursor:pointer}
+.attr-add svg{width:14px;height:14px}
+
+/* Field with icon */
+.field-with-icon{display:flex;align-items:center;gap:8px}
+.field-with-icon svg{width:18px;height:18px;opacity:0.8}
+
+/* Attributes list */
+.attribute-row{display:block;padding:8px 0;border-bottom:1px dashed #f3f4f6}
+.attribute-row .attr-body{display:inline-flex;align-items:center;gap:8px;flex-wrap:wrap}
+.attribute-row .attr-key{font-weight:600;color:#111}
+.attribute-row .attr-val{color:#374151}
+.attribute-row .attr-del{background:#fee2e2;color:#b91c1c;border:none;padding:4px 6px;border-radius:6px;cursor:pointer;margin-left:6px;font-weight:600;line-height:1}
+.attribute-row .attr-del:focus-visible{outline:3px solid rgba(3,102,214,0.18);outline-offset:3px}
+
+/* Table styles */
+.table{width:100%;border-collapse:collapse}
+.table thead th{background:#f8fafc;padding:12px;text-align:left;font-weight:600;border-bottom:1px solid #e5e7eb;color:#475569}
+.table tbody td{padding:16px 12px;border-bottom:1px solid #eef2f7;font-size:14px;vertical-align:middle}
+.table tr{height:68px}
+.table .actions{display:flex;gap:8px;align-items:center}
+
+/* Orders-specific card & table */
+.orders-card{padding:0;border-radius:10px;overflow:hidden}
+.orders-table thead th{background:linear-gradient(180deg, #fbfdff, #f8fafc)}
+.orders-table tbody tr{transition:background .12s, transform .06s}
+.orders-table tbody tr:hover{background:rgba(2,6,23,0.03);transform:translateY(-1px)}
+.orders-table tbody tr{cursor:default}
+.orders-table tbody tr[role='row']{cursor:pointer}
+
+/* Status badge */
+.status-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;font-weight:600;font-size:13px}
+.status-placed{background:#f8fafc;color:#6b7280;border:1px solid #e6eef6}
+.status-confirmed{background:#eff6ff;color:#0366d6;border:1px solid rgba(3,102,214,0.12)}
+.status-shipped{background:#fff7ed;color:#b45309;border:1px solid rgba(180,83,9,0.12)}
+.status-delivered{background:#ecfdf5;color:#059669;border:1px solid rgba(5,150,105,0.12)}
+.status-cancelled{background:#fff1f2;color:#b91c1c;border:1px solid rgba(185,28,28,0.08)}
+
+/* Order details panel */
+.order-details{padding:18px;border-radius:10px;max-height:760px;overflow:auto}
+.order-details h3{margin:0}
+.order-details .small{color:#6b7280}
+
+/* Slightly larger status select inside Order Details (local-only tweak) */
+.order-details .status-select{min-width:220px;padding:12px 14px;border-radius:10px;border:1px solid #e5e7eb;font-size:15px;color:#0f1724;background:#fff}
+.order-details .status-select:focus{outline:3px solid rgba(3,102,214,0.12);outline-offset:3px}
+
+/* Users page */
+.users-card{padding:0;border-radius:10px;overflow:hidden}
+.users-table thead th{background:linear-gradient(180deg,#fbfdff,#f8fafc);color:#475569}
+.users-table tbody tr{transition:background .12s, transform .06s}
+.users-table tbody tr:hover{background:rgba(2,6,23,0.03);transform:translateY(-1px);cursor:pointer}
+.user-avatar{width:44px;height:44px;border-radius:999px;object-fit:cover;border:1px solid #eef2f7;display:inline-block}
+.user-avatar--placeholder{display:inline-flex;align-items:center;justify-content:center;background:#eef2f7;color:#475569;font-weight:700}
+.user-avatar--large{width:76px;height:76px;border-radius:12px;font-size:20px;display:inline-flex;align-items:center;justify-content:center}
+.user-details{padding:18px;border-radius:10px;max-height:760px;overflow:auto}
+
+@media (max-width:880px){
+  .user-details{max-width:100%}
+}
+
+/* make rows clearly clickable while keeping selects usable */
+.orders-table tbody tr{cursor:pointer}
+.orders-table tbody tr select{cursor:default}
+
+/* Back button and small tweaks */
+.small-btn{padding:8px 10px;border-radius:6px;border:1px solid #d1d5db;background:#fff;font-size:13px}
+.back-btn{display:inline-flex;align-items:center;gap:8px;color:#0f1724;background:#fff;border:1px solid rgba(15,23,36,0.06);padding:8px 10px;border-radius:8px;font-weight:600}
+.back-btn .icon{width:16px;height:16px;display:block;color:inherit}
+.back-btn span{color:inherit;font-size:13px}
+.back-btn:hover{background:rgba(2,6,23,0.03);transform:translateY(-1px)}
+.back-btn:focus-visible{outline:3px solid rgba(3,102,214,0.16);outline-offset:3px}
+
+@media (max-width:880px){
+  .order-details{max-width:100%}
+}
+
+/* Admin products search */
+.search-input-wrap{position:relative}
+.search-input{padding:8px 10px;border-radius:8px;border:1px solid #e5e7eb;min-width:220px;background:#fff;color:#111;font-size:14px}
+.search-input::placeholder{color:#9ca3af}
+.search-clear{position:absolute;left:8px;top:50%;transform:translateY(-50%);background:transparent;border:none;color:#6b7280;padding:4px 6px;border-radius:6px;cursor:pointer;font-weight:700}
+.search-clear:hover{background:rgba(2,6,23,0.04);color:#111}
+.search-input-wrap .search-input{padding-left:36px}
+
+@media (max-width:880px){
+  .filter-row{flex-direction:column;align-items:stretch;gap:8px}
+  .search-input{min-width:100%}
+}
+
+@media (max-width:880px){
+  .product-form{grid-template-columns:1fr}
+  .admin-content{padding:12px}
+}

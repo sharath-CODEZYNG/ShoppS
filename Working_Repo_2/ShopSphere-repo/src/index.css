@@ -1,0 +1,109 @@
+/* Global reset and base styles for consistent layout across pages. */
+
+/* Box-sizing reset */
+*, *::before, *::after { box-sizing: border-box; }
+
+/* Minimal reset to remove browser inconsistencies */
+html, body, #root { height: 100%; }
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video { margin: 0; padding: 0; border: 0; vertical-align: baseline; }
+
+/* Default body styles and variables */
+:root{
+  /* Global theme variables */
+  --bg: linear-gradient(135deg, #6b46c1 0%, #2563eb 100%); /* purple -> blue */
+  --card: rgba(255,255,255,0.98);
+  --text: #0f172a; /* dark text for card content */
+  --on-bg: #ffffff; /* text/icons on gradient background */
+  --muted: #c7c9d9;
+  --accent: #7c3aed; /* a softer purple accent */
+  --container-width: 1100px;
+  --page-gutter: 16px;
+  --section-gap: 20px;
+}
+
+body{
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  color: var(--on-bg);
+  background: var(--bg);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  line-height: 1.5;
+  -webkit-text-size-adjust:100%;
+}
+
+/* Global link styles */
+a{ color: var(--accent); text-decoration: none; }
+a:hover{ text-decoration: underline; }
+
+/* Headings and typography adjustments */
+h1,h2,h3,h4{ font-weight: 600; letter-spacing: -0.02em; margin: 0 0 0.5rem 0; }
+h1{ font-size: 1.8rem; }
+h2{ font-size: 1.25rem; }
+h3{ font-size: 1rem; }
+p{ margin: 0 0 0.875rem 0; }
+
+/* Buttons and form elements base */
+button{ background: var(--accent); color: white; border: none; padding: 8px 12px; border-radius: 6px; cursor: pointer; font-weight:600 }
+button[disabled]{ opacity:0.6; cursor:not-allowed }
+input,textarea,select{ border:1px solid #e5e7eb; padding:8px;border-radius:6px }
+
+/* Consistent container used across pages */
+.container{ max-width: var(--container-width); margin: 0 auto; padding: 0 var(--page-gutter); }
+
+/* Main page layout */
+.app-root{ display:flex; flex-direction:column; min-height:100vh }
+.page-container{ flex:1; padding: 20px 0; }
+
+/* Section spacing utility - use for consistent vertical rhythm */
+.section{ margin-bottom: var(--section-gap); }
+
+/* Card utility */
+.card{ background: var(--card); padding: 16px; border-radius: 8px; box-shadow: 0 6px 20px rgba(2,6,23,0.08); color: var(--text); }
+
+.muted{ color: var(--muted); }
+
+/* Navbar styles (global) */
+.site-header{ background: transparent; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.nav{ display:flex; align-items:center; gap:16px; padding:12px 0; }
+.nav-brand{ font-weight:700; color:var(--on-bg); text-decoration:none; }
+.nav-links{ margin-left:auto; display:flex; gap:12px; align-items:center; }
+.nav-links a{ color:var(--on-bg); padding:6px 8px; border-radius:6px }
+.nav-links a:hover{ background: rgba(255,255,255,0.06); }
+
+/* Auth link/button in navbar to stand out */
+.auth-link{
+  background: transparent;
+  color: var(--on-bg);
+  padding:6px 12px;
+  border-radius:8px;
+  font-weight:600;
+  border: 1px solid rgba(255,255,255,0.14);
+  transition: background 150ms ease, color 150ms ease, border-color 150ms ease, opacity 150ms ease;
+}
+.auth-link:hover{
+  background: var(--on-bg);
+  color: var(--accent);
+  border-color: rgba(255,255,255,0.9);
+}
+
+/* form layout small helpers */
+.form-row{ display:flex; flex-direction:column; gap:6px; margin-bottom:12px }
+
+/* Responsive tweaks */
+@media (max-width:640px){
+  .nav{ padding:10px 0 }
+  .nav-links{ gap:8px }
+  h1{ font-size:1.6rem }
+}

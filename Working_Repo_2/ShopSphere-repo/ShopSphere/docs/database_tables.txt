@@ -1,0 +1,82 @@
+Database Tables - Codezyng E-commerce
+
+Overview:
+This document describes the main tables created for the ecommerce application, their purpose, key columns, types, defaults and important constraints.
+
+1) users
+- Purpose: Stores user accounts and roles
+- Key columns:
+  - id INT AUTO_INCREMENT PRIMARY KEY
+  - name VARCHAR(255) NOT NULL
+  - email VARCHAR(255) UNIQUE NOT NULL
+  - password VARCHAR(255) NOT NULL
+  - role ENUM('customer','admin') DEFAULT 'customer'
+  - created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+- Notes: Registration creates users with role 'customer' by default. Admins are assigned manually via DB.
+
+2) categories
+- Purpose: Product category listing (Food, Groceries, Electronic Gadgets)
+- Key columns:
+  - id INT AUTO_INCREMENT PRIMARY KEY
+  - name VARCHAR(100) UNIQUE NOT NULL
+  - description TEXT
+  - created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+- Notes: Frontend fetches categories for dropdown filters.
+
+3) products
+- Purpose: Product catalog
+- Key columns:
+  - id INTEGER PRIMARY KEY
+  - name VARCHAR(255)
+  - category VARCHAR(100)
+  - brand VARCHAR(100)
+  - price DECIMAL(10,2)
+  - availability INT DEFAULT 100
+  - description TEXT
+  - features TEXT
+  - tags TEXT
+  - attributes_json TEXT (JSON stored as TEXT)
+- Notes: `availability` holds numeric stock quantity (default 100). API returns this field, and backend updates availability when orders are placed.
+
+4) carts
+- Purpose: Temporary shopping cart per user (one row per product per user)
+- Key columns:
+  - id INT AUTO_INCREMENT PRIMARY KEY
+  - userId VARCHAR(255) NOT NULL
+  - productId INT NOT NULL
+  - quantity INT NOT NULL DEFAULT 1
+  - created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  - UNIQUE KEY user_product (userId, productId)
+  - FOREIGN KEY (productId) REFERENCES products(id) ON DELETE CASCADE (if products table exists when carts created)
+- Notes: The app creates this table at runtime with or without FK depending on product table presence. Cart API supports add, update, remove, clear.
+
+5) orders
+- Purpose: Persisted orders placed by users
+- Key columns:
+  - id INT AUTO_INCREMENT PRIMARY KEY
+  - user_id INT NOT NULL (FK -> users.id)
+  - status ENUM('pending','paid','shipped','delivered','cancelled') DEFAULT 'pending'
+  - total_amount DECIMAL(10,2) NOT NULL
+  - shipping_address TEXT
+  - created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  - updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+- Notes: Payment method concept removed; checkout only stores shipping address and total amount. Backend validates stock before creating an order and reduces product `availability` accordingly.
+
+6) order_items
+- Purpose: Line items for each order
+- Key columns:
+  - id INT AUTO_INCREMENT PRIMARY KEY
+  - order_id INT NOT NULL (FK -> orders.id)
+  - product_id INT NOT NULL (FK -> products.id)
+  - quantity INT NOT NULL DEFAULT 1
+  - price DECIMAL(10,2) NOT NULL (snapshot price at time of order)
+  - created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+- Notes: On order creation, each cart item becomes an order_item and product availability is decremented.
+
+Additional notes:
+- Referential integrity: orders.user_id -> users.id; order_items.order_id -> orders.id; order_items.product_id -> products.id. Products are referenced by carts and order_items.
+- Concurrency/stock handling: Backend validates current product `availability` at order creation time. If availability is insufficient, the order is rejected with an appropriate message. Availability is decremented atomically within the order creation flow to reduce race conditions.
+- Seed Data: `schema.sql` contains 60 product rows split into Food (1–20), Groceries (21–40), Electronic Gadgets (41–60). Categories table seeded with three categories.
+
+File location: docs/database_tables.txt
+
